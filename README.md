@@ -1,0 +1,3 @@
+My ~/.vim/ folder
+
+amcsi
