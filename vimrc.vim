@@ -176,6 +176,22 @@ function! Getclip()
   let @@ = reg_save
 endfunction
 
+function! MkTabs()
+    vsp
+    tabe
+    vsp
+    tabe
+    vsp
+    normal! 1gt
+endfunction
+
+function! Mks()
+    let oldSsop = &l:ssop
+    set ssop=buffers,tabpages,sesdir
+    mks!
+    let &l:ssop = oldSsop
+endfunction
+
 """"""""""""""
 "  MAPPING   "
 """"""""""""""
@@ -205,6 +221,13 @@ function! RmSwp()
 endfunction
 
 command! RmSwp :!rm %:h/.%:t.swp
+
+" Have 3 tabs with 2 verticle splits each
+command! MkTabs call MkTabs()
+
+" Make a lightweight Session.vim
+command! Mks call Mks()
+
 "map <F5> :Vexplore<CR>
 "imap <F5> <C-c>:Vexplore<CR>
 
