@@ -1,10 +1,18 @@
 set nocompatible " Because filetype detection doesn't work well in compatible mode
 
 filetype off                   " required!
-set rtp+=~/.vim/bundle/vundle
+
+if filereadable($HOME . '/vimfiles/vimrc.vim')
+    set rtp+=~/vimfiles/bundle/vundle
+    let path='~/vimfiles/bundle'
+    call vundle#rc(path)
+else
+    set rtp+=~/.vim/bundle/vundle
+    call vundle#rc()
+endif
+
 
 let g:phpcs_std_list="PSR1,PSR2"
-call vundle#rc()
 
 " <bundles>
 "Bundle 'joonty/vim-phpqa.git'
