@@ -26,6 +26,9 @@ Bundle 'vim-fugitive'
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'brookhong/DBGPavim'
+Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
+"Bundle 'hallettj/jslint.vim'
 " </bundles>
 
 
@@ -118,6 +121,9 @@ let g:phpqa_messdetector_autorun = 0
 
 " Don't run codesniffer on save (default = 1)
 let g:phpqa_codesniffer_autorun = 0
+
+" indent switch-cases
+let g:PHP_vintage_case_default_indent = 1
 
 """"""""""""""
 "  PREPARE   "
@@ -405,7 +411,7 @@ hi WildMenu cterm=NONE,bold ctermbg=Black ctermfg=Green gui=NONE,bold guibg=gree
 let xterm16_colormap = 'standard'       " Change if needed 
 if has('gui_running')
 	color ir_black
-elseif $TERM=~'16color' || $TERM == 'dumb'
+elseif $TERM=~'16color' || $TERM == 'dumb' || $TERM == 'msys'
 	set t_Co=16
 	color xterm16
 else
