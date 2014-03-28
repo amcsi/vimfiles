@@ -16,19 +16,20 @@ let g:phpcs_std_list="PSR1,PSR2"
 
 " <bundles>
 "Bundle 'joonty/vim-phpqa.git'
-"Bundle 'joonty/vdebug.git'
+Bundle 'joonty/vdebug.git'
 Bundle 'shawncplus/phpcomplete.vim'
 Bundle 'ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'vim-bracketed-paste'
 Bundle 'vim-fugitive'
-"Bundle 'vim-indent-guides'
+Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'brookhong/DBGPavim'
 Bundle 'mileszs/ack.vim'
 Bundle 'rking/ag.vim'
 "Bundle 'hallettj/jslint.vim'
+Bundle 'stephpy/vim-php-cs-fixer'
 " </bundles>
 
 
@@ -125,6 +126,10 @@ let g:phpqa_codesniffer_autorun = 0
 " indent switch-cases
 let g:PHP_vintage_case_default_indent = 1
 
+let g:php_cs_fixer_level = "psr2"
+
+let g:pdv_template_dir = $HOME ."/vimfiles/bundle/pdv/templates_snip"
+
 """"""""""""""
 "  PREPARE   "
 """"""""""""""
@@ -193,7 +198,7 @@ endfunction
 
 function! Mks()
     let oldSsop = &l:ssop
-    set ssop=buffers,tabpages,sesdir
+    set ssop=blank,buffers,tabpages,sesdir
     mks!
     let &l:ssop = oldSsop
 endfunction
