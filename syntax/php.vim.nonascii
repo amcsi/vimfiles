@@ -368,7 +368,7 @@ syn keyword phpKeyword die exit eval empty isset unset list instanceof insteadof
 " Include & friends
 syn keyword phpInclude include include_once require require_once namespace use contained
 
-" Types
+"Types
 syn keyword phpType bool[ean] int[eger] real double float string array object null self parent global this stdClass callable contained
 
 " Operator
@@ -386,9 +386,20 @@ syn match phpVarSelector    "\$"  contained display
 syn match phpMethodsVar     "->\h\w*" contained contains=phpMethods,phpMemberSelector display containedin=phpStringDouble
 syn match phpClasses        "\v[A-Za-z]+(::)@=" contained display
 
+"      \x00-\x40
+
+"      \x00-\x2F
+"      \x3A-\x40
+
+"      \x5B-\x5E
+"      \x60
+"      \x7B-\x7F
+
 " Identifier
-syn match  phpIdentifier         "$\h\w*"  contained contains=phpSuperglobals,phpVarSelector display
-syn match  phpIdentifierSimply   "${\h\w*}"  contains=phpOperator,phpParent  contained display
+syn match  phpIdentifier         "$[^\x00-\x40\x5B-\x5E\x60\x7B-\x7F][^\x00-\x2F\x3A-\x40\x5B-\x5E\x60\x7B-\x7F]*"  contained contains=phpSuperglobals,phpVarSelector display
+syn match  phpIdentifierSimply   "${[^\x00-\x40\x5B-\x5E\x60\x7B-\x7F][^\x00-\x2F\x3A-\x40\x5B-\x5E\x60\x7B-\x7F]*}"  contains=phpOperator,phpParent  contained display
+"syn match  phpIdentifier         "$[\h<80>-\UFFFF][\w<80>-\UFFFF]*"  contained contains=phpSuperglobals,phpVarSelector display
+"syn match  phpIdentifierSimply   "${[\h<80>-\UFFFF][\w<80>-\UFFFF]*}"  contains=phpOperator,phpParent  contained display
 syn region phpIdentifierComplex  matchgroup=phpParent start="{\$"rs=e-1 end="}"  contains=phpIdentifier,phpMemberSelector,phpVarSelector,phpIdentifierArray contained extend
 syn region phpIdentifierArray    matchgroup=phpParent start="\[" end="]" contains=@phpClInside contained
 
