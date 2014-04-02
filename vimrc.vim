@@ -114,6 +114,10 @@ set ffs=unix,dos
 set ff=unix
 set diffopt=filler,iwhite
 
+set lazyredraw
+
+"syntax sync minlines=256 "for slow ssh connections
+
 " Do not show ATTENTION message
 "set shortmess+=A
 
@@ -129,6 +133,7 @@ let g:PHP_vintage_case_default_indent = 1
 let g:php_cs_fixer_level = "psr2"
 
 let g:pdv_template_dir = $HOME ."/vimfiles/bundle/pdv/templates_snip"
+
 
 """"""""""""""
 "  PREPARE   "
