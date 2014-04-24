@@ -288,14 +288,18 @@ vnoremap <F2> :call PhpDocRange()<CR>
 inoremap ( ()<left>
 inoremap (( (
 inoremap () ()
+inoremap (<esc> (<C-c>
 inoremap [ []<left>
 inoremap [[ [
 inoremap [] []
+inoremap [<esc> [<C-c>
 inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<C-c>O
 "autocmd FileType javascript inoremap {<CR>  {<CR>}<C-c>O
+inoremap {{{    {}<Left>{}<Left>
 inoremap {{     {
 inoremap {}     {}
+inoremap {<esc> {<C-c>
 
 "keep visual selection after shifting tabs
 vnoremap > >gv
