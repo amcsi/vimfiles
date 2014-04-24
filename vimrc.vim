@@ -30,6 +30,13 @@ Bundle 'mileszs/ack.vim'
 Bundle 'rking/ag.vim'
 "Bundle 'hallettj/jslint.vim'
 Bundle 'stephpy/vim-php-cs-fixer'
+"Bundle 'Slava/vim-colors-tomorrow'
+"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"For linting JS
+Bundle 'scrooloose/syntastic'
+"http://4thinker.com/vim-airline.html
+"Bundle 'bling/vim-airline'
+Bundle 'kana/vim-submode'
 " </bundles>
 
 
@@ -107,6 +114,11 @@ highlight MatchParen ctermbg=4
 set laststatus=2
 set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
+let g:powerline_loaded = 0
+
+" compatible, unicode or fancy
+let g:Powerline_symbols = 'unicode'
+
 set exrc            " enable per-directory .vimrc files
 set secure          " disable unsafe commands in local .vimrc files
 
@@ -134,8 +146,47 @@ let g:php_cs_fixer_level = "psr2"
 
 let g:pdv_template_dir = $HOME ."/vimfiles/bundle/pdv/templates_snip"
 
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_php_checkers = ['php']
 
-""""""""""""""
+"let g:syntastic_javascript_jsl_conf = $HOME ."/vimfiles/other/jsl.conf"
+"let g:syntastic_javascript_jshint_conf = $HOME ."/vimfiles/other/jshint.conf.js"
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme             = 'powerlineish'
+
+if has ('win32unix') && !has('gui_running')
+    let g:airline_powerline_fonts = 1
+endif
+
+let g:airline_detect_whitespace=0
+
+
+let g:submode_timeout=0
+
+" ]m -> mmmm (next method) MMMM (prev method)
+call submode#enter_with('nextMethod', 'n', '', ']m', ']m') 
+call submode#leave_with('nextMethod', 'n', '', '<Esc>') 
+call submode#map('nextMethod', 'n', '', 'm', ']m') 
+call submode#map('nextMethod', 'n', '', 'M', '[m') 
+
+" [m -> mmmm (prev method) MMMM (next method)
+call submode#enter_with('prevMethod', 'n', '', '[m', ']m') 
+call submode#leave_with('prevMethod', 'n', '', '<Esc>') 
+call submode#map('prevMethod', 'n', '', 'm', '[m') 
+call submode#map('prevMethod', 'n', '', 'M', ']m') 
+
+set ttimeout
+set ttimeoutlen=100
+
+" The Platinum Searcher works great under windows
+" https://github.com/monochromegane/the_platinum_searcher
+if executable('pt')
+    let g:ackprg='pt'
+    set grepprg=pt\ --nocolor\ --nogroup
+endif
+
+"""""""""""""
 "  PREPARE   "
 """"""""""""""
 if s:pluginIndent == 1
@@ -207,6 +258,26 @@ function! Mks()
     mks!
     let &l:ssop = oldSsop
 endfunction
+
+function SaveQuickFixList(fname) 
+ let list = getqflist() 
+ for i in range(len(list)) 
+  if has_key(list[i], 'bufnr') 
+   let list[i].filename = fnamemodify(bufname(list[i].bufnr), ':p') 
+   unlet list[i].bufnr 
+  endif 
+ endfor 
+ let string = string(list) 
+ let lines = split(string, "\n") 
+ call writefile(lines, a:fname) 
+endfunction 
+
+function LoadQuickFixList(fname) 
+ let lines = readfile(a:fname) 
+ let string = join(lines, "\n") 
+ call setqflist(eval(string)) 
+endfunction 
+
 
 """"""""""""""
 "  MAPPING   "
@@ -382,7 +453,7 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-"autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 autocmd FileType c setlocal omnifunc=ccomplete#Complete
 
 au FileType javascript setlocal expandtab
