@@ -16,4 +16,4 @@ Git (for vundle)
 
 ### Before first vim launch with these (and any time new Bundles are added)
 
-    $ vim +BundleInstall +qall
+    $ vim +PluginInstall +qall
