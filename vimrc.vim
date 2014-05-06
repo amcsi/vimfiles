@@ -37,6 +37,7 @@ Bundle 'scrooloose/syntastic'
 "http://4thinker.com/vim-airline.html
 "Bundle 'bling/vim-airline'
 Bundle 'kana/vim-submode'
+Bundle 'arnaud-lb/vim-php-namespace' "\u
 " </bundles>
 
 
@@ -186,6 +187,8 @@ if executable('pt')
     set grepprg=pt\ --nocolor\ --nogroup
 endif
 
+set enc=utf-8
+
 """""""""""""
 "  PREPARE   "
 """"""""""""""
@@ -288,18 +291,18 @@ vnoremap <F2> :call PhpDocRange()<CR>
 inoremap ( ()<left>
 inoremap (( (
 inoremap () ()
-inoremap (<esc> (<C-c>
+"inoremap (<esc> (<C-c>
 inoremap [ []<left>
 inoremap [[ [
 inoremap [] []
-inoremap [<esc> [<C-c>
+"inoremap [<esc> [<C-c>
 inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<C-c>O
 "autocmd FileType javascript inoremap {<CR>  {<CR>}<C-c>O
 inoremap {{{    {}<Left>{}<Left>
 inoremap {{     {
 inoremap {}     {}
-inoremap {<esc> {<C-c>
+"inoremap {<esc> {<C-c>
 
 "keep visual selection after shifting tabs
 vnoremap > >gv
