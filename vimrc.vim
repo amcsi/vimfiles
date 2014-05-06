@@ -5,41 +5,43 @@ filetype off                   " required!
 if filereadable($HOME . '/vimfiles/vimrc.vim')
     set rtp+=~/vimfiles/bundle/vundle
     let path='~/vimfiles/bundle'
-    call vundle#rc(path)
+    call vundle#begin(path)
 else
     set rtp+=~/.vim/bundle/vundle
-    call vundle#rc()
+    call vundle#begin()
 endif
 
 
 let g:phpcs_std_list="PSR1,PSR2"
 
-" <bundles>
-"Bundle 'joonty/vim-phpqa.git'
-Bundle 'joonty/vdebug.git'
-Bundle 'shawncplus/phpcomplete.vim'
-Bundle 'ctrlp.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-bracketed-paste'
-Bundle 'vim-fugitive'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'brookhong/DBGPavim'
-Bundle 'mileszs/ack.vim'
-Bundle 'rking/ag.vim'
-"Bundle 'hallettj/jslint.vim'
-Bundle 'stephpy/vim-php-cs-fixer'
-"Bundle 'Slava/vim-colors-tomorrow'
-"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" <plugins>
+"Plugin 'joonty/vim-phpqa.git'
+Plugin 'joonty/vdebug.git'
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ConradIrwin/vim-bracketed-paste'
+Plugin 'tpope/vim-fugitive'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'gmarik/vundle'
+Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'brookhong/DBGPavim'
+Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
+"Plugin 'hallettj/jslint.vim'
+Plugin 'stephpy/vim-php-cs-fixer'
+"Plugin 'Slava/vim-colors-tomorrow'
+"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "For linting JS
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 "http://4thinker.com/vim-airline.html
-"Bundle 'bling/vim-airline'
-Bundle 'kana/vim-submode'
-Bundle 'arnaud-lb/vim-php-namespace' "\u
-" </bundles>
+"Plugin 'bling/vim-airline'
+Plugin 'kana/vim-submode'
+Plugin 'arnaud-lb/vim-php-namespace' "\u
+" </plugin>
 
+" All of your Plugins must be added before the following line
+call vundle#end()
 
 "execute pathogen#infect()
 "syntax on
