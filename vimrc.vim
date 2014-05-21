@@ -38,6 +38,8 @@ Plugin 'scrooloose/syntastic'
 "Plugin 'bling/vim-airline'
 Plugin 'kana/vim-submode'
 Plugin 'arnaud-lb/vim-php-namespace' "\u
+Plugin 'evidens/vim-twig'
+Plugin 'PeterRincker/vim-argumentative'
 " </plugin>
 
 " All of your Plugins must be added before the following line
