@@ -6,13 +6,17 @@ Git (for vundle)
 
 ### Installation:
 
-#### On windows:
+1)
 
-    git clone https://github.com/amcsi/vimfiles.git ~/vimfiles
+##### On windows:
 
-#### On unix-like:
+    $ git clone https://github.com/amcsi/vimfiles.git ~/vimfiles
 
-    git clone https://github.com/amcsi/vimfiles.git ~/vim
+##### On unix-like:
+
+    $ git clone https://github.com/amcsi/vimfiles.git ~/.vim
+
+2) Copy [toHomeVimrc.vim](toHomeVimrc.vim) to your `~/.vimrc`
 
 ### Before first vim launch with these (and any time new Bundles are added)
 
