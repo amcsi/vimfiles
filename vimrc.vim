@@ -191,7 +191,12 @@ if executable('pt')
     set grepprg=pt\ --nocolor\ --nogroup
 endif
 
-set enc=utf-8
+if !exists("g:vdebug_options")
+    let g:vdebug_options = {}
+endif
+let g:vdebug_options['path_maps'] = {'/cygdrive/d' : 'D:', '/cygdrive/c' : 'C:'}
+
+set encoding=utf-8
 
 """""""""""""
 "  PREPARE   "
