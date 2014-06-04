@@ -35,11 +35,17 @@ Plugin 'stephpy/vim-php-cs-fixer'
 "For linting JS
 Plugin 'scrooloose/syntastic'
 "http://4thinker.com/vim-airline.html
-"Plugin 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 Plugin 'kana/vim-submode'
 Plugin 'arnaud-lb/vim-php-namespace' "\u
 Plugin 'evidens/vim-twig'
-Plugin 'PeterRincker/vim-argumentative'
+Plugin 'PeterRincker/vim-argumentative' ">, <, ], [,
+Plugin 'AndrewRadev/splitjoin.vim' "gS gJ
+"Plugin 'SirVer/ultisnips'
+"Plugin 'tobyS/vmustache' "toby's templating tool
+"Plugin 'tobyS/pdv' "pdv#DocumentCurrentLine() pdv#DocumentWithSnip()
+"Plugin 'majutsushi/tagbar'
+"Plugin 'vim-php/tagbar-phpctags.vim'
 " </plugin>
 
 " All of your Plugins must be added before the following line
@@ -124,6 +130,8 @@ let g:powerline_loaded = 0
 " compatible, unicode or fancy
 let g:Powerline_symbols = 'unicode'
 
+let g:airline_powerline_fonts = 0
+
 set exrc            " enable per-directory .vimrc files
 set secure          " disable unsafe commands in local .vimrc files
 
@@ -194,7 +202,7 @@ endif
 if !exists("g:vdebug_options")
     let g:vdebug_options = {}
 endif
-let g:vdebug_options['path_maps'] = {'/cygdrive/d' : 'D:', '/cygdrive/c' : 'C:'}
+let g:vdebug_options['path_maps'] = {'/cygdrive/d' : 'D:', '/cygdrive/c' : 'C:', '/d' : 'D:', '/c' : 'C:'}
 
 set encoding=utf-8
 
@@ -481,6 +489,14 @@ autocmd Filetype * match
 " match commas on end of line for javascript 
 autocmd Filetype javascript match Error /,\_s*[)}\]]/ 
 augroup END
+
+" http://stackoverflow.com/a/774599/1381550
+" Uncomment the following to have Vim jump to the last position when                                                       
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
 
 """"""""""""""
 "  BUFFERS   "
