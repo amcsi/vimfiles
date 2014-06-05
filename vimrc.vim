@@ -189,8 +189,8 @@ call submode#leave_with('prevMethod', 'n', '', '<Esc>')
 call submode#map('prevMethod', 'n', '', 'm', '[m') 
 call submode#map('prevMethod', 'n', '', 'M', ']m') 
 
-set ttimeout
-set ttimeoutlen=100
+set nottimeout
+set ttimeoutlen=0
 
 " The Platinum Searcher works great under windows
 " https://github.com/monochromegane/the_platinum_searcher
@@ -548,14 +548,6 @@ endfunction
 
 let &t_SI .= WrapForTmux("\<Esc>[?2004h")
 let &t_EI .= WrapForTmux("\<Esc>[?2004l")
-
-function! XTermPasteBegin()
-  set pastetoggle=<Esc>[201~
-  set paste
-  return ""
-endfunction
-
-inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 if exists('$TMUX')
     "autocmd BufEnter,BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
