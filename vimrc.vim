@@ -202,7 +202,7 @@ endif
 if !exists("g:vdebug_options")
     let g:vdebug_options = {}
 endif
-let g:vdebug_options['path_maps'] = {'/cygdrive/d' : 'D:', '/cygdrive/c' : 'C:', '/d' : 'D:', '/c' : 'C:'}
+let g:vdebug_options['path_maps'] = {'D:' : '/cygdrive/d', 'C:' : '/cygdrive/c'}
 
 set encoding=utf-8
 
