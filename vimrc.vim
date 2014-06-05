@@ -93,7 +93,7 @@ let g:ctags_path='/usr/bin/ctags'
 "set foldmethod=syntax
 set cinoptions+=J1
 set noro
-set guifont=courier_new:h9 "GVim font
+set guifont=Powerline\ Consolas:h9,\ courier_new:h9 "GVim font
 if has('unix') && has('gui_running') "otherwise GVim on linux looks ugly
 	set guifont=Courier\ New\ Bold\ 9 "GVim font
 endif
@@ -129,8 +129,6 @@ let g:powerline_loaded = 0
 
 " compatible, unicode or fancy
 let g:Powerline_symbols = 'unicode'
-
-let g:airline_powerline_fonts = 0
 
 set exrc            " enable per-directory .vimrc files
 set secure          " disable unsafe commands in local .vimrc files
@@ -168,9 +166,11 @@ let g:syntastic_php_checkers = ['php']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme             = 'powerlineish'
 
-if has ('win32unix') && !has('gui_running')
-    let g:airline_powerline_fonts = 1
-endif
+let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 0
+"if has ('win32unix') && !has('gui_running')
+"    let g:airline_powerline_fonts = 1
+"endif
 
 let g:airline_detect_whitespace=0
 
