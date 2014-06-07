@@ -352,8 +352,9 @@ vnoremap gy ygv<C-c>
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
-map N Nzz
-map n nzz
+" amcsi: this is bad, because it keeps the BOTTOM reached message
+"map N Nzz
+"map n nzz
 
 " On some terminals, shift-tab isn't recognized properly. This is the remedy.
 " If it messes it up, remove this.
