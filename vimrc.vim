@@ -81,7 +81,7 @@ else
 end
 set keywordprg=pman "K command for manual
 set backspace=indent,eol,start "needed for cygwin (windows)
-set so=5 "do not show below last line
+set so=10 "do not show below last line
 set sj=1 "how many lines to scroll
 filetype plugin on
 let s:pluginIndent=1
