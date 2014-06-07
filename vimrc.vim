@@ -532,23 +532,6 @@ else
 	color ir_black256
 endif
 
-""""""""""""""""""""""""""
-"  TMUX BRACKETED PASTE  "
-""""""""""""""""""""""""""
-function! WrapForTmux(s)
-  if !exists('$TMUX')
-    return a:s
-  endif
-
-  let tmux_start = "\<Esc>Ptmux;"
-  let tmux_end = "\<Esc>\\"
-
-  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
-endfunction
-
-let &t_SI .= WrapForTmux("\<Esc>[?2004h")
-let &t_EI .= WrapForTmux("\<Esc>[?2004l")
-
 if exists('$TMUX')
     "autocmd BufEnter,BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
     autocmd FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
