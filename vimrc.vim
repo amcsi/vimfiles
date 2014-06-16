@@ -203,6 +203,7 @@ if !exists("g:vdebug_options")
     let g:vdebug_options = {}
 endif
 let g:vdebug_options['path_maps'] = {'D:' : '/cygdrive/d', 'C:' : '/cygdrive/c'}
+let g:vdebug_options["break_on_open"] = 0
 
 set encoding=utf-8
 
@@ -355,6 +356,9 @@ vnoremap gy ygv<C-c>
 " amcsi: this is bad, because it keeps the BOTTOM reached message
 "map N Nzz
 "map n nzz
+
+"Sorry, the '.' is bothersome on the Hungarian keyboard
+map . <Nop>
 
 " On some terminals, shift-tab isn't recognized properly. This is the remedy.
 " If it messes it up, remove this.
