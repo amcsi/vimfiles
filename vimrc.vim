@@ -41,11 +41,12 @@ Plugin 'arnaud-lb/vim-php-namespace' "\u
 Plugin 'evidens/vim-twig'
 Plugin 'PeterRincker/vim-argumentative' ">, <, ], [,
 Plugin 'AndrewRadev/splitjoin.vim' "gS gJ
-"Plugin 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 "Plugin 'tobyS/vmustache' "toby's templating tool
 "Plugin 'tobyS/pdv' "pdv#DocumentCurrentLine() pdv#DocumentWithSnip()
 "Plugin 'majutsushi/tagbar'
 "Plugin 'vim-php/tagbar-phpctags.vim'
+Plugin 'AndrewRadev/gapply.vim'
 " </plugin>
 
 " All of your Plugins must be added before the following line
@@ -448,15 +449,13 @@ if &term =~ "xterm"
     let &t_CS = "y"
 endif
 
-" Supposed support for Bracketed Paste mode
-if &term =~ "screen"
-    let &t_SI .= "\eP\e[3 q\e\\"
-    let &t_EI .= "\eP\e[1 q\e\\"
-else
-    let &t_SI .= "\e[3 q"
-    let &t_EI .= "\e[1 q"
-endif
-
+" supposedly this will make va' and va" not include whitespace
+for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '"', "'" ]
+  execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
+  execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+  execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
+  execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
+endfor
 
 """"""""""""""
 "  LANGUAGE  "
@@ -563,3 +562,5 @@ if !has('gui_running')
     let g:indent_guides_auto_colors = 0
     autocmd VimEnter,Colorscheme * call ChangeGuideColor()
 endif
+
+" Pipe to mysql: :'<,'>w !mysql
