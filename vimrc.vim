@@ -376,6 +376,10 @@ nnoremap <silent> <leader>y :call Putclip('n', 1)<CR>
 " paste from windows clipboard
 nnoremap <silent> <leader>p :call Getclip()<CR>
 
+" Remap normal Ex-mode with 'apply last macro'
+" Use gQ instead for Ex-mode; it's a better Ex-mode anyway with wildmode
+nnoremap Q @@
+
 let maplocalleader = ','
 
 " http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping 
@@ -562,5 +566,10 @@ if !has('gui_running')
     let g:indent_guides_auto_colors = 0
     autocmd VimEnter,Colorscheme * call ChangeGuideColor()
 endif
+
+""""""""""""""
+"  AUTOCMD   "
+""""""""""""""
+autocmd VimResized * wincmd =
 
 " Pipe to mysql: :'<,'>w !mysql
