@@ -164,7 +164,6 @@ let g:syntastic_php_checkers = ['php']
 "let g:syntastic_javascript_jsl_conf = $HOME ."/vimfiles/other/jsl.conf"
 "let g:syntastic_javascript_jshint_conf = $HOME ."/vimfiles/other/jshint.conf.js"
 
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme             = 'powerlineish'
 
 let g:airline_powerline_fonts = 1
