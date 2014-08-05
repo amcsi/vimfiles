@@ -424,18 +424,21 @@ endfunction
 """"""""""""""
 "   SCREEN   "
 """"""""""""""
-exe "set title titlestring=%t"
-exe "set title t_ts=\<ESC>k t_fs=\<ESC>\\"
-function! ResetTitle()
-    " disable vim's ability to set the title
-    exec "set title t_ts='' t_fs=''"
+let g:isScreen=$SCREEN
+if g:isScreen != ''
+    exe "set title titlestring=%t"
+    exe "set title t_ts=\<ESC>k t_fs=\<ESC>\\"
+    function! ResetTitle()
+        " disable vim's ability to set the title
+        exec "set title t_ts='' t_fs=''"
 
-    " and restore it to 'bash'
-    exec ":!echo -e '\033kb\033\\'\<CR>"
-endfunction
-au VimLeave * silent call ResetTitle()
-set t_ti=
-set t_te=
+        " and restore it to 'bash'
+        exec ":!echo -e '\033kb\033\\'\<CR>"
+    endfunction
+    au VimLeave * silent call ResetTitle()
+    set t_ti=
+    set t_te=
+endif
 
 " mode dependent cursor (mintty)
 let &t_ti.="\eP\e[1 q\e\\"
@@ -541,8 +544,7 @@ else
 endif
 
 if exists('$TMUX')
-    "autocmd BufEnter,BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
-    autocmd FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
+    autocmd BufEnter,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
     au VimLeave * silent call system("tmux rename-window b")
 endif
 
