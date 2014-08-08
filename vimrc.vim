@@ -71,6 +71,7 @@ set autoindent "keep tabs after newline
 set expandtab "tabs to spaces
 set smarttab
 "set smartindent "automatically indent after if
+set autoread
 set nu "for line numbers - opposite is set nonumber"
 if has("mouse")
 	set mouse=a mousemodel=popup 
@@ -435,9 +436,10 @@ if g:isScreen != ''
         exec ":!echo -e '\033kb\033\\'\<CR>"
     endfunction
     au VimLeave * silent call ResetTitle()
-    set t_ti=
-    set t_te=
 endif
+
+set t_ti=
+set t_te=
 
 " mode dependent cursor (mintty)
 let &t_ti.="\eP\e[1 q\e\\"
