@@ -314,19 +314,6 @@ inoremap <C-F2> <C-c>:call PhpDocSingle()<CR>i
 nnoremap <C-F2> :call PhpDocSingle()<CR> 
 vnoremap <C-F2> :call PhpDocRange()<CR>
 
-if !exists("g:AutoPairsLoaded")
-    inoremap ( ()<left>
-    inoremap (( (
-    inoremap () ()
-    inoremap [ []<left>
-    inoremap [[ [
-    inoremap [] []
-    inoremap {      {}<Left>
-    inoremap {<CR>  {<CR>}<C-c>O
-    inoremap {{     {
-    inoremap {}     {}
-endif
-
 "keep visual selection after shifting tabs
 vnoremap > >gv
 vnoremap < <gv
