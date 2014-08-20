@@ -41,12 +41,14 @@ Plugin 'arnaud-lb/vim-php-namespace' "\u
 Plugin 'evidens/vim-twig'
 Plugin 'PeterRincker/vim-argumentative' ">, <, ], [,
 Plugin 'AndrewRadev/splitjoin.vim' "gS gJ
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 "Plugin 'tobyS/vmustache' "toby's templating tool
 "Plugin 'tobyS/pdv' "pdv#DocumentCurrentLine() pdv#DocumentWithSnip()
 "Plugin 'majutsushi/tagbar'
 "Plugin 'vim-php/tagbar-phpctags.vim'
 Plugin 'AndrewRadev/gapply.vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-unimpaired' "]x, ]u, ]q (:cn), ]y (c esc) ]space (space below) ]n (git conflicts) ]f (next file in dir)
 " </plugin>
 
 " All of your Plugins must be added before the following line
@@ -128,6 +130,7 @@ set laststatus=2
 set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
 let g:powerline_loaded = 0
+let g:phpcomplete_enhance_jump_to_definition = 0
 
 " compatible, unicode or fancy
 let g:Powerline_symbols = 'unicode'
@@ -307,21 +310,22 @@ endfunction
 inoremap <F2> <C-c>:call PhpDocSingle()<CR>i 
 nnoremap <F2> :call PhpDocSingle()<CR> 
 vnoremap <F2> :call PhpDocRange()<CR>
-inoremap ( ()<left>
-inoremap (( (
-inoremap () ()
-"inoremap (<esc> (<C-c>
-inoremap [ []<left>
-inoremap [[ [
-inoremap [] []
-"inoremap [<esc> [<C-c>
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<C-c>O
-"autocmd FileType javascript inoremap {<CR>  {<CR>}<C-c>O
-inoremap {{{    {}<Left>{}<Left>
-inoremap {{     {
-inoremap {}     {}
-"inoremap {<esc> {<C-c>
+inoremap <C-F2> <C-c>:call PhpDocSingle()<CR>i 
+nnoremap <C-F2> :call PhpDocSingle()<CR> 
+vnoremap <C-F2> :call PhpDocRange()<CR>
+
+if !exists("g:AutoPairsLoaded")
+    inoremap ( ()<left>
+    inoremap (( (
+    inoremap () ()
+    inoremap [ []<left>
+    inoremap [[ [
+    inoremap [] []
+    inoremap {      {}<Left>
+    inoremap {<CR>  {<CR>}<C-c>O
+    inoremap {{     {
+    inoremap {}     {}
+endif
 
 "keep visual selection after shifting tabs
 vnoremap > >gv
@@ -340,9 +344,6 @@ command! MkTabs call MkTabs()
 
 " Make a lightweight Session.vim
 command! Mks call Mks()
-
-"map <F5> :Vexplore<CR>
-"imap <F5> <C-c>:Vexplore<CR>
 
 nnoremap <F3> :set invpaste paste?<CR>
 set pastetoggle=<F3>
@@ -408,6 +409,10 @@ call NoremapNormalCmd("<End>", 0, "g<End>")
 " PageUp/PageDown preserve relative cursor position
 call NoremapNormalCmd("<PageUp>", 0, "<C-U>", "<C-U>")
 call NoremapNormalCmd("<PageDown>", 0, "<C-D>", "<C-D>")
+
+nmap ú <C-]>
+autocmd FileType php nnoremap <buffer> ú :<C-u>call phpcomplete#JumpToDefinition('normal')<CR>
+autocmd FileType php nnoremap <buffer> <F12> :<C-u>call phpcomplete#JumpToDefinition('split')<CR>
 
 """"""""""""""
 " FUNCTIONS  "
