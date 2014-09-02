@@ -10,4 +10,3 @@ if !exists("g:AutoPairsLoaded")
     inoremap {{     {
     inoremap {}     {}
 endif
-

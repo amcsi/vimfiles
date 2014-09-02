@@ -47,8 +47,11 @@ Plugin 'AndrewRadev/splitjoin.vim' "gS gJ
 "Plugin 'majutsushi/tagbar'
 "Plugin 'vim-php/tagbar-phpctags.vim'
 Plugin 'AndrewRadev/gapply.vim'
-Plugin 'jiangmiao/auto-pairs'
+Plugin 'amcsi/auto-pairs'
+"Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-unimpaired' "]x, ]u, ]q (:cn), ]y (c esc) ]space (space below) ]n (git conflicts) ]f (next file in dir)
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'tpope/vim-obsession'
 " </plugin>
 
 " All of your Plugins must be added before the following line
@@ -177,7 +180,7 @@ let g:airline_powerline_fonts = 1
 "endif
 
 let g:airline_detect_whitespace=0
-
+let g:AutoPairsMapBS=0
 
 let g:submode_timeout=0
 
@@ -310,6 +313,9 @@ endfunction
 inoremap <F2> <C-c>:call PhpDocSingle()<CR>i 
 nnoremap <F2> :call PhpDocSingle()<CR> 
 vnoremap <F2> :call PhpDocRange()<CR>
+inoremap <F11> <C-c>:call PhpDocSingle()<CR>i 
+nnoremap <F11> :call PhpDocSingle()<CR> 
+vnoremap <F11> :call PhpDocRange()<CR>
 inoremap <C-F2> <C-c>:call PhpDocSingle()<CR>i 
 nnoremap <C-F2> :call PhpDocSingle()<CR> 
 vnoremap <C-F2> :call PhpDocRange()<CR>
