@@ -15,9 +15,15 @@ Git (for vundle)
 ##### On unix-like:
 
     $ git clone https://github.com/amcsi/vimfiles.git ~/.vim
+    
+2) Run:
 
-2) Copy [toHomeVimrc.vim](toHomeVimrc.vim) to your `~/.vimrc`
+    $ git submodule update --init --recursive
+    
+3)
 
-### Before first vim launch with these (and any time new Bundles are added)
+Copy [toHomeVimrc.vim](toHomeVimrc.vim) to your `~/.vimrc`
 
-    $ vim +PluginInstall +qall
+4) Finally run:
+
+    $ vim +PluginInstall +qall ### <- and run this any time new Bundles have been added to apply them
