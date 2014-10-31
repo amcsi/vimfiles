@@ -42,6 +42,7 @@ Plugin 'evidens/vim-twig'
 Plugin 'PeterRincker/vim-argumentative' ">, <, ], [,
 Plugin 'AndrewRadev/splitjoin.vim' "gS gJ
 "Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 "Plugin 'tobyS/vmustache' "toby's templating tool
 "Plugin 'tobyS/pdv' "pdv#DocumentCurrentLine() pdv#DocumentWithSnip()
 "Plugin 'majutsushi/tagbar'
@@ -52,6 +53,11 @@ Plugin 'amcsi/auto-pairs'
 Plugin 'tpope/vim-unimpaired' "]x, ]u, ]q (:cn), ]y (c esc) ]space (space below) ]n (git conflicts) ]f (next file in dir)
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'tpope/vim-obsession'
+"Plugin 'Shougo/neocomplete.vim'
+"Plugin 'neitanod/vim-clevertab'
+"Plugin 'ervandew/supertab'
+Plugin 'chriskempson/tomorrow-theme'
+Plugin 'xsbeats/vim-blade'
 " </plugin>
 
 " All of your Plugins must be added before the following line
@@ -158,8 +164,8 @@ let g:phpqa_messdetector_autorun = 0
 " Don't run codesniffer on save (default = 1)
 let g:phpqa_codesniffer_autorun = 0
 
-" indent switch-cases
-let g:PHP_vintage_case_default_indent = 1
+" indent switch-cases (causes more harm than benefit unfortunately)
+"let g:PHP_vintage_case_default_indent = 1
 
 let g:php_cs_fixer_level = "psr2"
 
@@ -198,6 +204,7 @@ call submode#map('prevMethod', 'n', '', 'M', ']m')
 
 set nottimeout
 set ttimeoutlen=0
+set timeoutlen=1000
 
 " The Platinum Searcher works great under windows
 " https://github.com/monochromegane/the_platinum_searcher
@@ -306,19 +313,12 @@ function LoadQuickFixList(fname)
  call setqflist(eval(string)) 
 endfunction 
 
-
 """"""""""""""
 "  MAPPING   "
 """"""""""""""
 inoremap <F2> <C-c>:call PhpDocSingle()<CR>i 
 nnoremap <F2> :call PhpDocSingle()<CR> 
 vnoremap <F2> :call PhpDocRange()<CR>
-inoremap <F11> <C-c>:call PhpDocSingle()<CR>i 
-nnoremap <F11> :call PhpDocSingle()<CR> 
-vnoremap <F11> :call PhpDocRange()<CR>
-inoremap <C-F2> <C-c>:call PhpDocSingle()<CR>i 
-nnoremap <C-F2> :call PhpDocSingle()<CR> 
-vnoremap <C-F2> :call PhpDocRange()<CR>
 
 "keep visual selection after shifting tabs
 vnoremap > >gv
@@ -406,6 +406,9 @@ call NoremapNormalCmd("<PageDown>", 0, "<C-D>", "<C-D>")
 nmap ú <C-]>
 autocmd FileType php nnoremap <buffer> ú :<C-u>call phpcomplete#JumpToDefinition('normal')<CR>
 autocmd FileType php nnoremap <buffer> <F12> :<C-u>call phpcomplete#JumpToDefinition('split')<CR>
+
+"let g:UltiSnipsExpandTrigger       = '<F5>'
+
 
 """"""""""""""
 " FUNCTIONS  "
@@ -574,3 +577,14 @@ endif
 autocmd VimResized * wincmd =
 
 " Pipe to mysql: :'<,'>w !mysql
+
+" q: -> Edit command in small window
+
+"inoremap <silent><tab> <c-r>=CleverTab#Complete('start')<cr>
+"                      \<c-r>=CleverTab#Complete('tab')<cr>
+"                      \<c-r>=CleverTab#Complete('ultisnips')<cr>
+"                      \<c-r>=CleverTab#Complete('stop')<cr>
+"inoremap <silent><s-tab> <c-r>=CleverTab#Complete('prev')<cr>
+                      "\<c-r>=CleverTab#Complete('keyword')<cr>
+                      "\<c-r>=CleverTab#Complete('neocomplete')<cr>
+                      "\<c-r>=CleverTab#Complete('omni')<cr>
