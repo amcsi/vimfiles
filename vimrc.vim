@@ -442,12 +442,14 @@ endif
 set t_ti=
 set t_te=
 
-" mode dependent cursor (mintty)
-let &t_ti.="\eP\e[1 q\e\\"
-let &t_te.="\eP\e[0 q\e\\"
+if has("win32unix")
+    " mode dependent cursor (mintty)
+    let &t_ti.="\eP\e[1 q\e\\"
+    let &t_te.="\eP\e[0 q\e\\"
 
-let &t_SI.="\eP\e[5 q\e\\"
-let &t_EI.="\eP\e[1 q\e\\"
+    let &t_SI.="\eP\e[5 q\e\\"
+    let &t_EI.="\eP\e[1 q\e\\"
+endif
 
 
 "Speed up vsplit scrolling
