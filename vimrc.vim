@@ -453,12 +453,12 @@ endif
 
 
 "Speed up vsplit scrolling
-if &term =~ "xterm"
-    let &t_ti .= "\e[?6h\e[?69h"
-    let &t_te .= "\e7\e[?69l\e[?6l\e8"
-    let &t_CV = "\e[%i%p1%d;%p2%ds"
-    let &t_CS = "y"
-endif
+"if &term =~ "xterm"
+"    let &t_ti .= "\e[?6h\e[?69h"
+"    let &t_te .= "\e7\e[?69l\e[?6l\e8"
+"    let &t_CV = "\e[%i%p1%d;%p2%ds"
+"    let &t_CS = "y"
+"endif
 
 " supposedly this will make va' and va" not include whitespace
 for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '"', "'" ]
