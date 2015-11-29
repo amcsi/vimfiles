@@ -6,7 +6,7 @@ Git (for vundle)
 
 ### Installation:
 
-1)
+1) Backup your current `~/.vimrc` file and `~/.vim` or `~/vimfiles` folders and make sure they're not there with those names.
 
 ##### On windows:
 
@@ -14,16 +14,11 @@ Git (for vundle)
 
 ##### On unix-like:
 
-    $ git clone https://github.com/amcsi/vimfiles.git ~/.vim
-    
+    $ git clone https://github.com/amcsi/vimfiles.git ~/vimfiles
+    $ ln -s vimfiles ~/.vim
+
 2) Run:
 
-    $ git submodule update --init --recursive
-    
-3)
-
-Copy [toHomeVimrc.vim](toHomeVimrc.vim) to your `~/.vimrc`
-
-4) Finally run:
-
-    $ vim +PluginInstall +qall ### <- and run this any time new Bundles have been added to apply them
+    $ cd ~/vimfiles
+    $ cp toHomeVimrc ~/.vimrc
+    $ bin/install.sh
