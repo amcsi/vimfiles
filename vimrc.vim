@@ -71,6 +71,7 @@ filetype plugin indent on     " required
 """""""""""""
 "  GENERIC  "
 """""""""""""
+set noswapfile " Don't use Swap files!!
 set guitablabel=%N/\ %t\ %M
 set showcmd
 set incsearch
