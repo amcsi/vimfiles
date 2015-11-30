@@ -219,6 +219,7 @@ if !exists("g:vdebug_options")
 endif
 let g:vdebug_options['path_maps'] = {'D:' : '/cygdrive/d', 'C:' : '/cygdrive/c'}
 let g:vdebug_options["break_on_open"] = 0
+let g:bracketed_paste_tmux_wrap = 0 " do not allow bracketed paste wrap for tmux
 
 set encoding=utf-8
 
@@ -393,6 +394,14 @@ function! NoremapNormalCmd(key, preserve_omni, ...)
     execute ":inoremap <silent> " . a:key . " " . icmd
   endif
 endfunction
+
+" Fix keycodes (PhpStorm)
+map <Esc>[H <Home>
+map <Esc>[F <End>
+imap <Esc>[H <Home>
+imap <Esc>[F <End>
+cmap <Esc>[H <Home>
+cmap <Esc>[F <End>
 
 " Cursor moves by screen lines
 call NoremapNormalCmd("<Up>", 1, "gk")
