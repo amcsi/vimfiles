@@ -461,8 +461,18 @@ if g:isScreen != ''
     au VimLeave * silent call ResetTitle()
 endif
 
-set t_ti=
-set t_te=
+" This should solve junk appearing in windows prompt
+" http://vi.stackexchange.com/a/3642
+if exists(&restorescreen)
+    if has("win32")
+        set restorescreen
+    else
+        set norestorescreen
+    endif
+else
+    set t_ti=
+    set t_te=
+endif
 
 if has("win32unix")
     " mode dependent cursor (mintty)
