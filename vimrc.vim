@@ -58,6 +58,7 @@ Plugin 'tpope/vim-obsession'
 "Plugin 'ervandew/supertab'
 Plugin 'chriskempson/tomorrow-theme'
 Plugin 'xsbeats/vim-blade'
+Plugin 'dag/vim2hs'
 " </plugin>
 
 " All of your Plugins must be added before the following line
