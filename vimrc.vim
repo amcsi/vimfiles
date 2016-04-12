@@ -531,14 +531,6 @@ autocmd FileType c setlocal omnifunc=ccomplete#Complete
 
 au FileType javascript setlocal expandtab
 
-augroup CommaError 
-au!
-" clear matches on most file types 
-autocmd Filetype * match 
-" match commas on end of line for javascript 
-autocmd Filetype javascript match Error /,\_s*[)}\]]/ 
-augroup END
-
 " http://stackoverflow.com/a/774599/1381550
 " Uncomment the following to have Vim jump to the last position when                                                       
 " reopening a file
