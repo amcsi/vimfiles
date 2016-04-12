@@ -59,6 +59,7 @@ Plugin 'tpope/vim-obsession'
 Plugin 'chriskempson/tomorrow-theme'
 Plugin 'xsbeats/vim-blade'
 Plugin 'dag/vim2hs'
+Plugin 'lambdatoast/elm.vim'
 " </plugin>
 
 " All of your Plugins must be added before the following line
