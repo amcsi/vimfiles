@@ -17,7 +17,7 @@ let g:phpcs_std_list="PSR1,PSR2"
 " <plugins>
 "Plugin 'joonty/vim-phpqa.git'
 Plugin 'joonty/vdebug.git'
-Plugin 'shawncplus/phpcomplete.vim'
+"Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ConradIrwin/vim-bracketed-paste'
@@ -30,8 +30,6 @@ Plugin 'mileszs/ack.vim'
 Plugin 'rking/ag.vim'
 "Plugin 'hallettj/jslint.vim'
 Plugin 'stephpy/vim-php-cs-fixer'
-"Plugin 'Slava/vim-colors-tomorrow'
-"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "For linting JS
 Plugin 'scrooloose/syntastic'
 "http://4thinker.com/vim-airline.html
@@ -43,23 +41,19 @@ Plugin 'PeterRincker/vim-argumentative' ">, <, ], [,
 Plugin 'AndrewRadev/splitjoin.vim' "gS gJ
 "Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-"Plugin 'tobyS/vmustache' "toby's templating tool
-"Plugin 'tobyS/pdv' "pdv#DocumentCurrentLine() pdv#DocumentWithSnip()
-"Plugin 'majutsushi/tagbar'
-"Plugin 'vim-php/tagbar-phpctags.vim'
 Plugin 'AndrewRadev/gapply.vim'
 Plugin 'amcsi/auto-pairs'
 "Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-unimpaired' "]x, ]u, ]q (:cn), ]y (c esc) ]space (space below) ]n (git conflicts) ]f (next file in dir)
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'tpope/vim-obsession'
-"Plugin 'Shougo/neocomplete.vim'
-"Plugin 'neitanod/vim-clevertab'
-"Plugin 'ervandew/supertab'
 Plugin 'chriskempson/tomorrow-theme'
 Plugin 'xsbeats/vim-blade'
 Plugin 'dag/vim2hs'
-Plugin 'lambdatoast/elm.vim'
+Plugin 'ElmCast/elm-vim'
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'lambdatoast/elm.vim'
+"Plugin 'mtscout6/syntastic-local-eslint.vim'
 " </plugin>
 
 " All of your Plugins must be added before the following line
@@ -115,7 +109,9 @@ if has('unix') && has('gui_running') "otherwise GVim on linux looks ugly
 endif
 set hlsearch
 set hidden "Change buffers without warning even on unsaved changes
-set sh=bash\ --rcfile\ ~/.bashvimrc "shell to run
+if has('unix') && !has('win32unix')
+  set sh=bash\ --rcfile\ ~/.bashvimrc "shell to run
+endif
 "set sxq=\" "linux default, but recommended setting after forcing bash on windows
 set ssl "expand paths to slashes
 "setlocal sp=2>&1\|\ tee "piping :make to errorformat
@@ -174,8 +170,13 @@ let g:php_cs_fixer_level = "psr2"
 
 let g:pdv_template_dir = $HOME ."/vimfiles/bundle/pdv/templates_snip"
 
-let g:syntastic_javascript_checkers = ['jshint']
+"let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_php_checkers = ['php']
+
+" https://github.com/ElmCast/elm-vim
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:elm_syntastic_show_warnings = 1
 
 "let g:syntastic_javascript_jsl_conf = $HOME ."/vimfiles/other/jsl.conf"
 "let g:syntastic_javascript_jshint_conf = $HOME ."/vimfiles/other/jshint.conf.js"
@@ -229,10 +230,13 @@ set encoding=utf-8
 "  PREPARE   "
 """"""""""""""
 if s:pluginIndent == 1
-	"if &filetype != 'javascript'
-		filetype indent on "Turns on filetype detection, filetype plugins, and filetype indenting 
+	if &filetype != 'javascript'
+        set tabstop=2 "columns a tab represents
+        set softtabstop=2 ""
+        set shiftwidth=2 "columns of space to move line with << and >>
+        "filetype indent on "Turns on filetype detection, filetype plugins, and filetype indenting 
 		"all of which add nice extra features to whatever language you're using
-	"endif
+	endif
 endif
 au FileType javascript setlocal ai
 "autocmd FileType javascript filetype indent off
@@ -298,7 +302,7 @@ function! Mks()
     let &l:ssop = oldSsop
 endfunction
 
-function SaveQuickFixList(fname) 
+function! SaveQuickFixList(fname) 
  let list = getqflist() 
  for i in range(len(list)) 
   if has_key(list[i], 'bufnr') 
@@ -311,7 +315,7 @@ function SaveQuickFixList(fname)
  call writefile(lines, a:fname) 
 endfunction 
 
-function LoadQuickFixList(fname) 
+function! LoadQuickFixList(fname) 
  let lines = readfile(a:fname) 
  let string = join(lines, "\n") 
  call setqflist(eval(string)) 
@@ -437,7 +441,7 @@ autocmd FileType php nnoremap <buffer> <F12> :<C-u>call phpcomplete#JumpToDefini
 """"""""""""""
 " FUNCTIONS  "
 """"""""""""""
-function s:MkNonExDir(file, buf)
+function! s:MkNonExDir(file, buf)
     if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
         let dir=fnamemodify(a:file, ':h')
         if !isdirectory(dir)
@@ -509,6 +513,7 @@ endfor
 "setlocal shellpipe="2>&1| tee"
 
 autocmd FileType php,html setlocal makeprg=php\ -l\ '%'
+autocmd FileType php,html setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 if !has('unix') || has('win32unix')
 	"autocmd FileType php setlocal makeprg=C:\\Windows\\PHP\\php.exe
 	"autocmd FileType html setlocal makeprg=C:\\Windows\\PHP\\php.exe
@@ -518,7 +523,6 @@ endif
 "set makeprg=php\ -l\ %\ 3>&1\ 1>&2\ 2>&3\ 3>&- "theoretically swaps stderr and stdout
 "set makeprg=php\ -l\ %\ 2>&1\ >\ /dev/null
 "set makeprg=php\ -l\ %\ 2>&1\ 2>\ /dev/null
-set errorformat=%m\ in\ %f\ on\ line\ %l
 au BufRead,BufNewFile *.tpl setlocal filetype=smarty 
 au BufRead,BufNewFile *.json setlocal filetype=javascript
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
@@ -530,6 +534,19 @@ autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 autocmd FileType c setlocal omnifunc=ccomplete#Complete
 
 au FileType javascript setlocal expandtab
+
+"if filereadable("Main.elm")
+"  au BufWritePost *.elm ElmMakeFile("Main.elm")
+"elseif filereadable("app/Main.elm")
+"  au BufWritePost *.elm ElmMakeFile("app/Main.elm")
+"endif
+
+let g:elm_format_autosave = 1
+
+" https://github.com/ElmCast/elm-vim
+let g:ycm_semantic_triggers = {
+     \ 'elm' : ['.'],
+     \}
 
 " http://stackoverflow.com/a/774599/1381550
 " Uncomment the following to have Vim jump to the last position when                                                       
