@@ -16,7 +16,6 @@ let g:phpcs_std_list="PSR1,PSR2"
 
 " <plugins>
 "Plugin 'joonty/vim-phpqa.git'
-Plugin 'joonty/vdebug.git'
 "Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
@@ -31,7 +30,6 @@ Plugin 'rking/ag.vim'
 "Plugin 'hallettj/jslint.vim'
 Plugin 'stephpy/vim-php-cs-fixer'
 "For linting JS
-Plugin 'scrooloose/syntastic'
 "http://4thinker.com/vim-airline.html
 Plugin 'bling/vim-airline'
 Plugin 'kana/vim-submode'
@@ -51,7 +49,11 @@ Plugin 'chriskempson/tomorrow-theme'
 Plugin 'xsbeats/vim-blade'
 Plugin 'dag/vim2hs'
 Plugin 'ElmCast/elm-vim'
-Plugin 'Valloric/YouCompleteMe'
+if has('python')
+  Plugin 'joonty/vdebug.git'
+  Plugin 'Valloric/YouCompleteMe'
+  Plugin 'scrooloose/syntastic'
+endif
 "Plugin 'lambdatoast/elm.vim'
 "Plugin 'mtscout6/syntastic-local-eslint.vim'
 " </plugin>
@@ -111,6 +113,10 @@ set hlsearch
 set hidden "Change buffers without warning even on unsaved changes
 if has('unix') && !has('win32unix')
   set sh=bash\ --rcfile\ ~/.bashvimrc "shell to run
+elseif has('win32') && executable('bash')
+  set sh=bash
+  set shellcmdflag=--login\ -c
+  set shellxquote=\"
 endif
 "set sxq=\" "linux default, but recommended setting after forcing bash on windows
 set ssl "expand paths to slashes
@@ -154,8 +160,8 @@ set lazyredraw
 
 "syntax sync minlines=256 "for slow ssh connections
 
-" Do not show ATTENTION message
-"set shortmess+=A
+" http://stackoverflow.com/questions/890802/how-do-i-disable-the-press-enter-or-type-command-to-continue-prompt-in-vim
+set shortmess=aoOtI
 
 " Don't run messdetector on save (default = 1)
 let g:phpqa_messdetector_autorun = 0
@@ -541,7 +547,11 @@ au FileType javascript setlocal expandtab
 "  au BufWritePost *.elm ElmMakeFile("app/Main.elm")
 "endif
 
-let g:elm_format_autosave = 1
+if !has('unix')
+  let g:elm_format_autosave = 1
+else
+  let g:elm_format_autosave = 0
+endif
 
 " https://github.com/ElmCast/elm-vim
 let g:ycm_semantic_triggers = {
