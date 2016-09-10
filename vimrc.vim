@@ -592,7 +592,7 @@ hi WildMenu cterm=NONE,bold ctermbg=Black ctermfg=Green gui=NONE,bold guibg=gree
 let xterm16_colormap = 'standard'       " Change if needed 
 if has('gui_running')
 	color ir_black
-elseif $TERM=~'16color' || $TERM == 'dumb' || $TERM == 'msys'
+elseif $TERM=~'16color' || $TERM == 'dumb' || $TERM == 'msys' || !$TERM
 	set t_Co=16
 	color xterm16
 else
