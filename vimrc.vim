@@ -353,6 +353,9 @@ command! MkTabs call MkTabs()
 " Make a lightweight Session.vim
 command! Mks call Mks()
 
+" Visual Block command in case C-V doesn't work on a terminal.
+command! Vb normal! <C-v>
+
 nnoremap <F3> :set invpaste paste?<CR>
 set pastetoggle=<F3>
 "imap <F4> <C-c><F4>
