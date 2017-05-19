@@ -420,10 +420,10 @@ map <Esc>[C l
 map <Esc>[D h
 imap <Esc>[H <Home>
 imap <Esc>[F <End>
-imap <Esc>[A k
-imap <Esc>[B j
-imap <Esc>[C l
-imap <Esc>[D h
+imap <Esc>[A <Up>
+imap <Esc>[B <Down>
+imap <Esc>[C <Right>
+imap <Esc>[D <Left>
 cmap <Esc>[H <Home>
 cmap <Esc>[F <End>
 cmap <Esc>[A k
