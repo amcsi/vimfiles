@@ -84,6 +84,7 @@ set smarttab
 "set smartindent "automatically indent after if
 set autoread
 set nu "for line numbers - opposite is set nonumber"
+set cryptmethod=blowfish2
 if has("mouse")
 	set mouse=a mousemodel=popup 
 endif
