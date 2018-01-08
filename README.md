@@ -10,15 +10,21 @@ Git (for vundle)
 
 ##### On windows:
 
-    $ git clone https://github.com/amcsi/vimfiles.git ~/vimfiles
+```sh
+git clone https://github.com/amcsi/vimfiles.git ~/vimfiles
+```
 
 ##### On unix-like:
 
-    $ git clone https://github.com/amcsi/vimfiles.git ~/vimfiles
-    $ ln -s vimfiles ~/.vim
+```sh
+git clone https://github.com/amcsi/vimfiles.git ~/vimfiles
+ln -s vimfiles ~/.vim
+```
 
 2) Run:
 
-    $ cd ~/vimfiles
-    $ cp toHomeVimrc ~/.vimrc
-    $ bin/install.sh
+```
+cd ~/vimfiles
+cp toHomeVimrc ~/.vimrc
+bin/install.sh
+```
