@@ -31,7 +31,6 @@ Plugin 'rking/ag.vim'
 Plugin 'stephpy/vim-php-cs-fixer'
 "For linting JS
 "http://4thinker.com/vim-airline.html
-Plugin 'bling/vim-airline'
 Plugin 'kana/vim-submode'
 Plugin 'arnaud-lb/vim-php-namespace' "\u
 Plugin 'evidens/vim-twig'
@@ -49,12 +48,18 @@ Plugin 'chriskempson/tomorrow-theme'
 Plugin 'xsbeats/vim-blade'
 Plugin 'dag/vim2hs'
 Plugin 'ElmCast/elm-vim'
-Plugin 'vim-airline/vim-airline-themes'
 if has('python')
   Plugin 'joonty/vdebug.git'
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'scrooloose/syntastic'
 endif
+
+" Plugins that should not be available for git bash within IntelliJ
+if !(!&shell && has('win32unix'))
+  Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
+endif
+
 "Plugin 'lambdatoast/elm.vim'
 "Plugin 'mtscout6/syntastic-local-eslint.vim'
 " </plugin>
