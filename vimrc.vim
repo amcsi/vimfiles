@@ -11,7 +11,6 @@ else
     call vundle#begin()
 endif
 
-
 let g:phpcs_std_list="PSR1,PSR2"
 
 " <plugins>
@@ -42,7 +41,6 @@ Plugin 'AndrewRadev/gapply.vim'
 Plugin 'amcsi/auto-pairs'
 "Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-unimpaired' "]x, ]u, ]q (:cn), ]y (c esc) ]space (space below) ]n (git conflicts) ]f (next file in dir)
-Plugin 'edkolev/tmuxline.vim'
 Plugin 'tpope/vim-obsession'
 Plugin 'chriskempson/tomorrow-theme'
 Plugin 'xsbeats/vim-blade'
@@ -60,6 +58,10 @@ if !(!&shell && has('win32unix'))
   Plugin 'vim-airline/vim-airline-themes'
 endif
 
+" Plugins to not run in gvim
+if !has("gui_running")
+  Plugin 'edkolev/tmuxline.vim'
+endif
 "Plugin 'lambdatoast/elm.vim'
 "Plugin 'mtscout6/syntastic-local-eslint.vim'
 " </plugin>
