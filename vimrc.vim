@@ -243,6 +243,15 @@ let g:bracketed_paste_tmux_wrap = 0 " do not allow bracketed paste wrap for tmux
 
 set encoding=utf-8
 
+" Auto save session on leave, but only if there already is a session.
+function! SaveSession()
+  if v:this_session != ""
+    echo "Auto-saving session."
+    exe 'mksession! ' . '"' . v:this_session . '"'
+  endif
+endfunction
+au VimLeave * :call SaveSession()
+
 """""""""""""
 "  PREPARE   "
 """"""""""""""
