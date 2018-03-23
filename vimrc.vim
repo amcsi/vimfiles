@@ -46,6 +46,8 @@ Plugin 'chriskempson/tomorrow-theme'
 Plugin 'xsbeats/vim-blade'
 Plugin 'dag/vim2hs'
 Plugin 'ElmCast/elm-vim'
+Plugin 'kana/vim-fakeclip'
+
 if has('python')
   Plugin 'joonty/vdebug.git'
   Plugin 'Valloric/YouCompleteMe'
