@@ -163,8 +163,10 @@ let g:Powerline_symbols = 'unicode'
 set exrc            " enable per-directory .vimrc files
 set secure          " disable unsafe commands in local .vimrc files
 
-set ffs=unix,dos
-set ff=unix
+" aka. ffs
+set fileformats=unix,dos,mac
+" aka. ff
+set fileformat=unix
 set diffopt=filler,iwhite
 
 set lazyredraw
