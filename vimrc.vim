@@ -506,7 +506,7 @@ if exists(&restorescreen)
     else
         set norestorescreen
     endif
-else
+elseif !has("win32")
     set t_ti=
     set t_te=
 endif
