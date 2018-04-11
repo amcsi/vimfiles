@@ -435,10 +435,10 @@ endfunction
 " Fix keycodes (PhpStorm)
 map <Esc>[H <Home>
 map <Esc>[F <End>
-map <Esc>[A k
-map <Esc>[B j
-map <Esc>[C l
-map <Esc>[D h
+map <Esc>[A <Up>
+map <Esc>[B <Down>
+map <Esc>[C <Right>
+map <Esc>[D <Left>
 imap <Esc>[H <Home>
 imap <Esc>[F <End>
 imap <Esc>[A <Up>
@@ -447,10 +447,10 @@ imap <Esc>[C <Right>
 imap <Esc>[D <Left>
 cmap <Esc>[H <Home>
 cmap <Esc>[F <End>
-cmap <Esc>[A k
-cmap <Esc>[B j
-cmap <Esc>[C l
-cmap <Esc>[D h
+cmap <Esc>[A <Up>
+cmap <Esc>[B <Down>
+cmap <Esc>[C <Right>
+cmap <Esc>[D <Left>
 
 " Cursor moves by screen lines
 call NoremapNormalCmd("<Up>", 1, "gk")
