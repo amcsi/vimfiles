@@ -258,7 +258,7 @@ au VimLeave * :call SaveSession()
 "  PREPARE   "
 """"""""""""""
 if s:pluginIndent == 1
-	if &filetype != 'javascript'
+	if &filetype == 'javascript'
         set tabstop=2 "columns a tab represents
         set softtabstop=2 ""
         set shiftwidth=2 "columns of space to move line with << and >>
