@@ -29,7 +29,6 @@ Plugin 'rking/ag.vim'
 "Plugin 'hallettj/jslint.vim'
 Plugin 'stephpy/vim-php-cs-fixer'
 "For linting JS
-"http://4thinker.com/vim-airline.html
 Plugin 'kana/vim-submode'
 Plugin 'arnaud-lb/vim-php-namespace' "\u
 Plugin 'evidens/vim-twig'
@@ -47,17 +46,12 @@ Plugin 'xsbeats/vim-blade'
 Plugin 'dag/vim2hs'
 Plugin 'ElmCast/elm-vim'
 Plugin 'kana/vim-fakeclip'
+Plugin 'itchyny/lightline.vim'
 
 if has('python')
   Plugin 'joonty/vdebug.git'
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'scrooloose/syntastic'
-endif
-
-" Plugins that should not be available for git bash within IntelliJ
-if !(!&shell && has('win32unix'))
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
 endif
 
 " Plugins to not run in gvim
@@ -200,15 +194,6 @@ let g:elm_syntastic_show_warnings = 1
 "let g:syntastic_javascript_jsl_conf = $HOME ."/vimfiles/other/jsl.conf"
 "let g:syntastic_javascript_jshint_conf = $HOME ."/vimfiles/other/jshint.conf.js"
 
-let g:airline_theme             = 'powerlineish'
-
-let g:airline_powerline_fonts = 1
-"let g:airline_powerline_fonts = 0
-"if has ('win32unix') && !has('gui_running')
-"    let g:airline_powerline_fonts = 1
-"endif
-
-let g:airline_detect_whitespace=0
 let g:AutoPairsMapBS=0
 
 let g:submode_timeout=0
