@@ -47,6 +47,7 @@ Plugin 'dag/vim2hs'
 Plugin 'ElmCast/elm-vim'
 Plugin 'kana/vim-fakeclip'
 Plugin 'itchyny/lightline.vim'
+Plugin 'Matt-Deacalion/vim-systemd-syntax'
 
 if has('python')
   Plugin 'joonty/vdebug.git'
