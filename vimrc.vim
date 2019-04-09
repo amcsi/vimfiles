@@ -492,7 +492,10 @@ if exists(&restorescreen)
     else
         set norestorescreen
     endif
-elseif !has("win32")
+elseif !has("win32") && $__INTELLIJ_COMMAND_HISTFILE__ == ''
+    " Make sure to not set these when running in IntelliJ, otherwise the
+    " terminal on pressing Escape would move the cursor back to the editor
+    " rather than exiting insert mode.
     set t_ti=
     set t_te=
 endif
